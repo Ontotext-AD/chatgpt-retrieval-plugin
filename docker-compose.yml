@@ -30,6 +30,7 @@ services:
     - 8000:8000
     restart: on-failure
     environment:
+      OPENAI_API_KEY: 'SET YOUR OWN'
       DATASTORE: 'weaviate'
       WEAVIATE_URL: 'http://weaviate:8080'
       WEAVIATE_CLASS: 'STARWARS'
