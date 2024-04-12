@@ -9,7 +9,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.21.2
+    image: semitechnologies/weaviate:1.24.4
     ports:
     - 8080:8080
     volumes:
@@ -30,12 +30,12 @@ services:
     - 8000:8000
     restart: on-failure
     environment:
-      OPENAI_API_KEY: SET YOUR OWN
       DATASTORE: 'weaviate'
       WEAVIATE_URL: 'http://weaviate:8080'
       WEAVIATE_CLASS: 'STARWARS'
       CHUNK_SIZE: '400'
       BEARER_TOKEN: 'SET YOUR OWN'
+      LOGURU_LEVEL: "INFO"
   graphdb:
     image: ontotext/graphdb:10.6.2
     restart: always
