@@ -36,7 +36,9 @@ def get_embeddings(texts: List[str]) -> List[List[float]]:
         # Catch the exception here and log, as otherwise we'll suppress the message and just get the class.
         logger.error(e)
         raise e
-    logger.debug("Processed batch of size: " + str(len(texts)) + " in: " + str(time.time() - start))
+    elapsed = time.time() - start
+    size = len(texts)
+    logger.debug(f"Processed batch of size: {size:.6f} in: {elapsed:.6f}s")
     # Extract the embedding data from the response
     data = response["data"]  # type: ignore
 
@@ -85,5 +87,6 @@ def get_chat_completion(
     choices = response["choices"]  # type: ignore
     completion = choices[0].message.content.strip()
     logger.info(f"Completion: {completion}")
-    logger.debug("Processed query in: " + str(time.time() - start))
+    elapsed = time.time() - start
+    logger.debug(f"Processed query in: {elapsed:.6f}s")
     return completion

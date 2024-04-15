@@ -82,7 +82,8 @@ async def upsert(
     start = time.time()
     try:
         ids = await datastore.upsert(request.documents)
-        logger.info("Inserted new data in: " + str(time.time() - start) + "s.")
+        elapsed = time.time() - start
+        logger.info(f"Inserted new data in: {elapsed:.6f}s.")
         return UpsertResponse(ids=ids)
     except Exception as e:
         logger.error(e)
@@ -101,7 +102,8 @@ async def query_main(
         results = await datastore.query(
             request.queries,
         )
-        logger.info("Queried in " + str(time.time() - start) + "s.")
+        elapsed = time.time() - start
+        logger.info(f"Queried in: {elapsed:.6f}s.")
         return QueryResponse(results=results)
     except Exception as e:
         logger.error(e)
